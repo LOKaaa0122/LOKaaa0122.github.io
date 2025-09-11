@@ -12,44 +12,174 @@
       justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffe4e1);
-      font-family: "Comic Sans MS", "Segoe UI", sans-serif;
-      color: #fff;
-      text-align: center;
+      font-family: "Segoe UI", sans-serif;
+      overflow: hidden;
     }
-    .container {
-      background: rgba(255, 182, 193, 0.85);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
-      max-width: 800px;
-      width: 95%;
+    .layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
     }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: #fff0f5;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    .side-text {
+      flex: 1;
+      max-width: 200px;
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+    }
+    .scroll-up, .scroll-down {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #fffaf0;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      position: absolute;
+      width: 100%;
+    }
+
+    /* left side = align right */
+    .scroll-up {
+      text-align: right;
+      animation: moveUp 40s linear infinite;
+    }
+    /* right side = align left */
+    .scroll-down {
+      text-align: left;
+      animation: moveDown 40s linear infinite;
+    }
+
+    @keyframes moveUp {
+      0%   { top: 100%; }
+      100% { top: -100%; }
+    }
+    @keyframes moveDown {
+      0%   { top: -100%; }
+      100% { top: 100%; }
+    }
+
+    .video-container {
+      flex: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     video {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
-    }
-    p {
-      margin-top: 15px;
-      font-size: 1.2em;
-      color: #fffaf0;
+      height: calc(100vh - 50px);
+      max-height: calc(100vh - 50px);
+      aspect-ratio: 9 / 16;
+      border-radius: 20px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+      background: #000;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>💖 Happy 1000th Day 💖</h1>
-    <video controls autoplay>
-      <source src="1000th.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <p>For the love of my life ✨</p>
+  <div class="layout">
+    <!-- Left Side (scrolling up, right aligned, emoji at end) -->
+    <div class="side-text">
+      <div class="scroll-up">
+        <div>I love you ❤️</div>
+        <div>Би чамд хайртай 💖</div>
+        <div>Te amo 💘</div>
+        <div>Je t’aime 💕</div>
+        <div>Ich liebe dich 💝</div>
+        <div>Ti amo 💞</div>
+        <div>사랑해 🌸</div>
+        <div>愛してる 🌹</div>
+        <div>我爱你 💫</div>
+        <div>أنا بحبك 🌷</div>
+        <div>Я тебя люблю 💓</div>
+        <div>Eu te amo 🌻</div>
+        <div>Seni seviyorum 🌼</div>
+        <div>Mahal kita 🌺</div>
+        <div>मैं तुमसे प्यार करता 🌙</div>
+        <div>Tôi yêu bạn ⭐</div>
+        <div>Ek is lief vir jou 🍀</div>
+        <div>Kocham cię 🌊</div>
+        <div>Jag älskar dig 🔥</div>
+        <div>Jeg elsker deg 🌈</div>
+        <div>I love you ❤️</div>
+        <div>Би чамд хайртай 💖</div>
+        <div>Te amo 💘</div>
+        <div>Je t’aime 💕</div>
+        <div>Ich liebe dich 💝</div>
+        <div>Ti amo 💞</div>
+        <div>사랑해 🌸</div>
+        <div>愛してる 🌹</div>
+        <div>我爱你 💫</div>
+        <div>أنا بحبك 🌷</div>
+        <div>Я тебя люблю 💓</div>
+        <div>Eu te amo 🌻</div>
+        <div>Seni seviyorum 🌼</div>
+        <div>Mahal kita 🌺</div>
+        <div>मैं तुमसे प्यार करता 🌙</div>
+        <div>Tôi yêu bạn ⭐</div>
+        <div>Ek is lief vir jou 🍀</div>
+        <div>Kocham cię 🌊</div>
+        <div>Jag älskar dig 🔥</div>
+        <div>Jeg elsker deg 🌈</div>
+      </div>
+    </div>
+
+    <!-- Video Center -->
+    <div class="video-container">
+      <video controls autoplay playsinline>
+        <source src="1000th.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Right Side (scrolling down, left aligned, emoji at start) -->
+    <div class="side-text">
+      <div class="scroll-down">
+        <div>❤️ I love you</div>
+        <div>💖 Би чамд хайртай</div>
+        <div>💘 Te amo</div>
+        <div>💕 Je t’aime</div>
+        <div>💝 Ich liebe dich</div>
+        <div>💞 Ti amo</div>
+        <div>🌸 사랑해</div>
+        <div>🌹 愛してる</div>
+        <div>💫 我爱你</div>
+        <div>🌷 أنا بحبك</div>
+        <div>💓 Я тебя люблю</div>
+        <div>🌻 Eu te amo</div>
+        <div>🌼 Seni seviyorum</div>
+        <div>🌺 Mahal kita</div>
+        <div>🌙 मैं तुमसे प्यार करता</div>
+        <div>⭐ Tôi yêu bạn</div>
+        <div>🍀 Ek is lief vir jou</div>
+        <div>🌊 Kocham cię</div>
+        <div>🔥 Jag älskar dig</div>
+        <div>🌈 Jeg elsker deg</div>
+        <div>❤️ I love you</div>
+        <div>💖 Би чамд хайртай</div>
+        <div>💘 Te amo</div>
+        <div>💕 Je t’aime</div>
+        <div>💝 Ich liebe dich</div>
+        <div>💞 Ti amo</div>
+        <div>🌸 사랑해</div>
+        <div>🌹 愛してる</div>
+        <div>💫 我爱你</div>
+        <div>🌷 أنا بحبك</div>
+        <div>💓 Я тебя люблю</div>
+        <div>🌻 Eu te amo</div>
+        <div>🌼 Seni seviyorum</div>
+        <div>🌺 Mahal kita</div>
+        <div>🌙 मैं तुमसे प्यार करता</div>
+        <div>⭐ Tôi yêu bạn</div>
+        <div>🍀 Ek is lief vir jou</div>
+        <div>🌊 Kocham cię</div>
+        <div>🔥 Jag älskar dig</div>
+        <div>🌈 Jeg elsker deg</div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
