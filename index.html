@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Хөгжөөнт Тэмцээн Уралдаан</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --yellow: #FFE600;
+  --pink: #FF2D78;
+  --blue: #00D4FF;
+  --purple: #12012E;
+  --lime: #AAFF00;
+  --orange: #FF6B00;
+}
+
+body {
+  background: #080818;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 30px 0;
+  font-family: 'Righteous', sans-serif;
+}
+
+.poster {
+  width: 680px;
+  background: var(--purple);
+  position: relative;
+  overflow: hidden;
+  border: 2.5px solid var(--yellow);
+  box-shadow: 0 0 50px rgba(255,230,0,0.25), 0 0 100px rgba(255,45,120,0.15);
+}
+
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.055) 1px, transparent 1px);
+  background-size: 36px 36px;
+  animation: gridMove 10s linear infinite;
+  pointer-events: none;
+}
+@keyframes gridMove { from{transform:translateY(0)} to{transform:translateY(36px)} }
+
+.blob { position:absolute; border-radius:50%; filter:blur(90px); opacity:0.2; animation:bpulse 5s ease-in-out infinite alternate; pointer-events:none; }
+.b1 { width:380px;height:380px;background:var(--pink);top:-130px;left:-100px; }
+.b2 { width:260px;height:260px;background:var(--blue);bottom:250px;right:-70px;animation-delay:2s; }
+.b3 { width:180px;height:180px;background:var(--yellow);top:38%;left:52%;animation-delay:1s; }
+@keyframes bpulse { from{opacity:0.15;transform:scale(1)} to{opacity:0.28;transform:scale(1.2)} }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; z-index: 10;
+  padding: 30px 36px 0;
+  text-align: center;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.ln { font-family:'Bebas Neue',sans-serif; font-size:108px; }
+.n-yellow { color:var(--yellow); text-shadow:5px 5px 0 var(--pink), 0 0 30px rgba(255,230,0,0.4); animation:nglow 2.5s ease-in-out infinite alternate; }
+.n-white  { color:#fff; text-shadow:4px 4px 0 var(--blue); }
+.n-blue   { color:var(--blue); text-shadow:4px 4px 0 rgba(0,212,255,0.4); }
+.n-pink   { color:var(--pink); text-shadow:4px 4px 0 rgba(255,45,120,0.35); }
+.n-slash  { font-family:'Bebas Neue',sans-serif; font-size:80px; color:rgba(255,255,255,0.2); }
+.n-plus   { font-family:'Bebas Neue',sans-serif; font-size:56px; color:var(--lime); margin:0 2px; align-self:flex-start; padding-top:16px; }
+.n-eq     { font-family:'Bebas Neue',sans-serif; font-size:50px; color:rgba(255,255,255,0.25); margin:0 4px; }
+
+@keyframes nglow {
+  from { text-shadow:5px 5px 0 var(--pink), 0 0 20px rgba(255,230,0,0.3); }
+  to   { text-shadow:5px 5px 0 var(--pink), 0 0 55px rgba(255,230,0,0.85); }
+}
+
+.logo-caption {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:11px; letter-spacing:5px;
+  color:rgba(255,255,255,0.3);
+  margin-bottom:12px;
+}
+.main-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:50px; letter-spacing:7px;
+  color:#fff; text-shadow:2px 2px 0 var(--blue);
+  line-height:1; margin-bottom:4px;
+}
+.sub-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:16px; letter-spacing:6px;
+  color:var(--yellow); margin-bottom:18px;
+}
+
+/* ===== TICKER ===== */
+.ticker-wrap {
+  background:var(--pink);
+  overflow:hidden; white-space:nowrap;
+  padding:7px 0;
+  border-top:1.5px solid rgba(255,255,255,0.2);
+  border-bottom:1.5px solid rgba(255,255,255,0.2);
+  position:relative; z-index:10;
+}
+.ticker-inner {
+  display:inline-block;
+  animation:tick 22s linear infinite;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:13px; letter-spacing:3px; color:#fff;
+}
+@keyframes tick { from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+
+/* ===== BODY ===== */
+.body {
+  position:relative; z-index:10;
+  padding:22px 36px 0;
+}
+
+/* Info cards */
+.info-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-bottom:18px;
+}
+.ic {
+  background:rgba(255,255,255,0.04);
+  border:1.5px solid rgba(255,230,0,0.22);
+  border-radius:11px; padding:11px 15px;
+  display:flex; align-items:center; gap:10px;
+}
+.ic-icon { font-size:20px; flex-shrink:0; }
+.ic-lbl  { font-family:'Bebas Neue',sans-serif; font-size:10px; letter-spacing:3px; color:rgba(255,255,255,0.38); }
+.ic-val  { font-family:'Bebas Neue',sans-serif; font-size:19px; color:var(--yellow); letter-spacing:1px; line-height:1.1; }
+.ic-sub  { font-size:10px; color:rgba(255,255,255,0.4); margin-top:1px; }
+
+.loc-card {
+  grid-column:span 2;
+  background:rgba(0,212,255,0.07);
+  border-color:rgba(0,212,255,0.28);
+  text-decoration:none;
+  cursor:pointer;
+  transition:all 0.25s;
+  justify-content:flex-start;
+}
+.loc-card:hover {
+  border-color:var(--blue);
+  background:rgba(0,212,255,0.15);
+  transform:translateY(-2px);
+  box-shadow:0 6px 22px rgba(0,212,255,0.18);
+}
+.loc-card .ic-val { color:var(--blue); font-size:17px; }
+.map-badge {
+  margin-left:auto;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:10px; letter-spacing:2px;
+  color:var(--blue);
+  background:rgba(0,212,255,0.12);
+  padding:3px 10px; border-radius:6px;
+  display:flex; align-items:center; gap:4px;
+  flex-shrink:0;
+}
+
+/* Section heading */
+.sh {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:11px; letter-spacing:4px; color:var(--blue);
+  display:flex; align-items:center; gap:8px;
+  margin-bottom:9px;
+}
+.sh::after { content:''; flex:1; height:1px; background:rgba(0,212,255,0.22); }
+
+/* Schedule items */
+.slist { display:flex; flex-direction:column; gap:7px; margin-bottom:16px; }
+
+.si {
+  display:flex; align-items:flex-start; gap:10px;
+  border-left:3px solid transparent;
+  border-radius:10px; padding:10px 13px;
+  background:rgba(255,255,255,0.035);
+  position:relative;
+}
+.si-n {
+  font-family:'Bebas Neue',sans-serif; font-size:26px;
+  line-height:1; color:rgba(255,255,255,0.1);
+  min-width:20px; flex-shrink:0;
+}
+.si-b { flex:1; }
+.si-t {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:17px; letter-spacing:2px; line-height:1.1;
+}
+.si-d {
+  font-size:11px; color:rgba(255,255,255,0.48);
+  margin-top:3px; letter-spacing:0.2px; line-height:1.5;
+}
+.si-tag {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:10px; letter-spacing:2px;
+  padding:3px 8px; border-radius:6px;
+  align-self:flex-start; flex-shrink:0; white-space:nowrap;
+}
+
+.c-blue   { border-color:var(--blue); }
+.c-blue .si-t   { color:var(--blue); }
+.c-blue .si-tag { background:rgba(0,212,255,0.13); color:var(--blue); }
+
+.c-orange { border-color:var(--orange); }
+.c-orange .si-t   { color:var(--orange); }
+.c-orange .si-tag { background:rgba(255,107,0,0.13); color:var(--orange); }
+
+.c-pink   { border-color:var(--pink); }
+.c-pink .si-t   { color:var(--pink); }
+.c-pink .si-tag { background:rgba(255,45,120,0.13); color:var(--pink); }
+
+.c-lime   { border-color:var(--lime); }
+.c-lime .si-t   { color:var(--lime); }
+.c-lime .si-tag { background:rgba(170,255,0,0.1); color:var(--lime); }
+
+.c-yellow { border-color:var(--yellow); box-shadow:0 0 12px rgba(255,230,0,0.1); }
+.c-yellow .si-t   { color:var(--yellow); }
+.c-yellow .si-tag { background:rgba(255,230,0,0.13); color:var(--yellow); }
+
+.c-dim    { border-color:rgba(255,255,255,0.1); }
+.c-dim .si-t   { color:rgba(255,255,255,0.6); }
+.c-dim .si-tag { background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.45); }
+
+/* Free games chips */
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.chip {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:20px; padding:4px 11px;
+  font-size:11px; color:rgba(255,255,255,0.58);
+  display:flex; align-items:center; gap:4px;
+}
+
+/* Notes */
+.notes {
+  background:rgba(255,45,120,0.07);
+  border:1px solid rgba(255,45,120,0.22);
+  border-radius:11px; padding:13px 16px;
+  margin-bottom:4px;
+}
+.notes-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:11px; letter-spacing:4px; color:var(--pink);
+  margin-bottom:9px; display:flex; align-items:center; gap:6px;
+}
+.notes-h::after { content:''; flex:1; height:1px; background:rgba(255,45,120,0.22); }
+.note {
+  display:flex; align-items:flex-start; gap:8px;
+  font-size:12px; color:rgba(255,255,255,0.62);
+  line-height:1.55; margin-bottom:7px;
+}
+.note:last-child { margin-bottom:0; }
+.ndot { color:var(--pink); font-size:15px; flex-shrink:0; line-height:1.3; }
+
+/* Bottom */
+.bottom {
+  background:var(--yellow);
+  padding:13px 36px;
+  display:flex; justify-content:space-between; align-items:center;
+  margin-top:20px;
+  position:relative; z-index:10;
+}
+.bt { font-family:'Bebas Neue',sans-serif; color:var(--purple); font-size:13px; letter-spacing:3px; }
+.bc { font-family:'Bebas Neue',sans-serif; color:var(--pink); font-size:17px; letter-spacing:2px; background:var(--purple); padding:3px 13px; border-radius:6px; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="grid-bg"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo-row">
+      <span class="ln n-yellow">3</span>
+      <span class="n-slash">/</span>
+      <span class="ln n-white">8</span>
+      <span class="n-plus">+</span>
+      <span class="ln n-blue">3</span>
+      <span class="n-slash">/</span>
+      <span class="ln n-white">18</span>
+    </div>
+    <div class="logo-caption">🎉 &nbsp; ХАМТ ОЛНЫ АРГА ХЭМЖЭЭ &nbsp; 🎉</div>
+    <div class="main-title">ХӨГЖӨӨНТ ТЭМЦЭЭН</div>
+    <div class="sub-title">УРАЛДААН · 2026</div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <span class="ticker-inner">🎮 KAHOOT &nbsp;★&nbsp; 🎯 DARTS &nbsp;★&nbsp; ⚽ FOOSBALL &nbsp;★&nbsp; 🏒 AIR HOCKEY &nbsp;★&nbsp; 🎤 KARAOKE &nbsp;★&nbsp; 🎱 BILLIARD &nbsp;★&nbsp; 🃏 BOARD GAMES &nbsp;★&nbsp; 🏆 НЭГЭН ЯЛАГЧ &nbsp;★&nbsp; 🎮 PS5 &nbsp;★&nbsp; 🎯 DARTS &nbsp;★&nbsp;</span>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- Date / Time / Location -->
+    <div class="info-row" style="margin-top:18px">
+      <div class="ic">
+        <div class="ic-icon">📅</div>
+        <div>
+          <div class="ic-lbl">ОГНОО</div>
+          <div class="ic-val">2026-03-20</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-icon">⏰</div>
+        <div>
+          <div class="ic-lbl">ЦАГ</div>
+          <div class="ic-val">19:00 – 22:00</div>
+          <div class="ic-sub">нийт 3 цаг</div>
+        </div>
+      </div>
+      <a class="ic loc-card" href="https://maps.google.com/?cid=16539260273965635188" target="_blank">
+        <div class="ic-icon">📍</div>
+        <div>
+          <div class="ic-lbl">ХАЯГ · GOOGLE MAPS</div>
+          <div class="ic-val">SPACE SPORTS BAR · БЗД 7-Р ХОРОО</div>
+        </div>
+        <div class="map-badge">🗺 НЭЭХ →</div>
+      </a>
+    </div>
+
+    <!-- Schedule -->
+    <div class="sh">📋 &nbsp; ХӨТӨЛБӨР</div>
+
+    <div class="slist">
+
+      <div class="si c-blue">
+        <div class="si-n">1</div>
+        <div class="si-b">
+          <div class="si-t">🎮 KAHOOT</div>
+          <div class="si-d">Бүх хүн оролцоно</div>
+        </div>
+        <div class="si-tag">🏆 1 ЯЛАГЧ</div>
+      </div>
+
+      <div class="si c-orange">
+        <div class="si-n">2</div>
+        <div class="si-b">
+          <div class="si-t">☕ ЗАВСАРЛАГА</div>
+          <div class="si-d">Хөнгөн зууш &amp; beer</div>
+        </div>
+        <div class="si-tag">🥤 НИЙТИЙН</div>
+      </div>
+
+      <div class="si c-pink">
+        <div class="si-n">3</div>
+        <div class="si-b">
+          <div class="si-t">⚔️ ХӨГЖӨӨНТ ТЭМЦЭЭНҮҮД</div>
+          <div class="si-d">Тухайн үед нь багт хуваана · Багаар оролцоно · Darts · Foosball · Billiard</div>
+        </div>
+        <div class="si-tag">🔥 БАГИЙН</div>
+      </div>
+
+      <div class="si c-lime">
+        <div class="si-n">4</div>
+        <div class="si-b">
+          <div class="si-t">🎤 KARAOKE BATTLE</div>
+          <div class="si-d">Баг тус бүрээс 1 хүн оролцох · Тусдаа шагналтай · Мөн багтаа оноо авчирна</div>
+        </div>
+        <div class="si-tag">🎵 1 ЯЛАГЧ</div>
+      </div>
+
+      <div class="si c-yellow">
+        <div class="si-n">5</div>
+        <div class="si-b">
+          <div class="si-t">🎁 ЯЛАГЧДАД ГАРЫН БЭЛЭГ</div>
+          <div class="si-d">Kahoot ялагч · Karaoke ялагч · Тэмцээний шилдэг баг</div>
+        </div>
+        <div class="si-tag">🥇 ШАГНАЛ</div>
+      </div>
+
+      <div class="si c-dim">
+        <div class="si-n">6</div>
+        <div class="si-b">
+          <div class="si-t">🕹️ ЧӨЛӨӨТ ЦАГ — тоглож болох зүйлс</div>
+          <div class="chips">
+            <span class="chip">🎮 PS5</span>
+            <span class="chip">🏒 Air Hockey</span>
+            <span class="chip">⚽ Foosball</span>
+            <span class="chip">🎱 Billiard</span>
+            <span class="chip">🃏 Board Games</span>
+            <span class="chip">🎯 Darts</span>
+            <span class="chip">🎤 Karaoke</span>
+          </div>
+        </div>
+        <div class="si-tag">🎊 FREE</div>
+      </div>
+
+    </div>
+
+    <!-- Notes -->
+    <div class="notes">
+      <div class="notes-h">⚠️ &nbsp; САНАМЖ</div>
+      <div class="note">
+        <span class="ndot">★</span>
+        <span><strong style="color:var(--yellow)">19:00 ээс эхлэх тул цагаа бариарай</strong> хөөрхөнүүдээ 🙏</span>
+      </div>
+      <div class="note">
+        <span class="ndot">★</span>
+        <span>Уух зүйлсийн тоо хязгаартай тул <strong style="color:var(--yellow)">яаж мэдэх вэ</strong> — <strong style="color:var(--pink)">төсөвтэй ирээрэй</strong> 💸</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom strip -->
+  <div class="bottom">
+    <div class="bt">🎉 БҮГДИЙГ УРЬЖ БАЙНА!</div>
+    <div class="bc">LET'S GOOO 🚀</div>
+    <div class="bt">ХАМТ ОЛНООРОО ✨</div>
+  </div>
+
+</div>
+</body>
+</html>
